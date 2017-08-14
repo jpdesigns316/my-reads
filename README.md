@@ -45,8 +45,8 @@ $ npm start
 | NavBar.js | /src/Components | Component to display the Navbar. Renamed to NavBar so it wouldn't be confused with the Navbar that is in react-bootstrap |
 | Search.js | /src/Components | Component designed for the search page |
 | Shelf.js | /src/Components | Component for showing the books depending on what shelf they should be on |
-| ShelfChanger.js* | /src/Component | Component for moving books between sheleves |
- *=Credit: Tsega GitHub
+| ShelfChanger.js | /src/Component | Component for moving books between shelves |
+
 
  ## Routing
  | Route | Description |
@@ -56,3 +56,7 @@ $ npm start
  | /read | Read shelf |
  | /wantToRead | Currently Reading shelf |
  | /serach | Search Page |
+
+
+---
+Credit [react-bootstrap](https://react-bootstrap.github.io/)

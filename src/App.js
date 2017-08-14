@@ -37,11 +37,7 @@ class BooksApp extends React.Component {
 
     changeShelf = (book, newShelf) => {
         BooksAPI.update(book, newShelf).then(() => {
-            // Update the local copy of the book
             book.shelf = newShelf;
-
-            // Filter out the book and append it to the end of the list
-            // so it appears at the end of whatever shelf it was added to.
             this.setState(state => ({
                 books: state.books.filter(b => b.id !== book.id).concat([ book ])
             }));
@@ -51,7 +47,6 @@ class BooksApp extends React.Component {
     updateQuery = (query) => {
         if(query){
             BooksAPI.search(query, this.MAX_RESULTS).then((books) => {
-                // if the BookAPI.search worked properly, this would be unnecessary
                 if(books.length){
                     books.forEach((book, index) => {
                         let myBook = this.state.books.find((b) => b.id === book.id);
