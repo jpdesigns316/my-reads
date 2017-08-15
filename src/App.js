@@ -14,100 +14,115 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 class BooksApp extends React.Component {
-    MAX_RESULTS = 30;
+  MAX_RESULTS = 30;
 
-    state = {
-        books: [],
-        searchBooks: []
-    };
+  state = {
+    books: [],
+    searchBooks: [],
+    shelves: [
+      {
+        id: 1,
+        name: "Currently Reading",
+        type: "currentlyReading"
+      }, {
+        id: 2,
+        name: "Want To Read",
+        type: "wantToRead"
+      }, {
+        id: 3,
+        name: "Read",
+        type: "read"
+      }
+    ]
 
-    componentDidMount() {
-        this.fetchBooks();
-    }
+  };
 
-    fetchBooks() {
-        BooksAPI.getAll().then((books) => {
-            this.setState({books});
-        });
-    }
+  componentDidMount() {
+    this.fetchBooks();
+  }
 
-    getShelfBooks(shelfName){
-        return this.state.books.filter((b) => b.shelf === shelfName)
-    }
+  fetchBooks() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({books});
+    });
+  }
 
-    changeShelf = (book, newShelf) => {
-        BooksAPI.update(book, newShelf).then(() => {
-            book.shelf = newShelf;
-            this.setState(state => ({
-                books: state.books.filter(b => b.id !== book.id).concat([ book ])
-            }));
-        });
-    };
+  getShelfBooks(shelfName) {
+    return this.state.books.filter((b) => b.shelf === shelfName)
+  }
 
-    updateQuery = (query) => {
-        if(query){
-            BooksAPI.search(query, this.MAX_RESULTS).then((books) => {
-                if(books.length){
-                    books.forEach((book, index) => {
-                        let myBook = this.state.books.find((b) => b.id === book.id);
-                        book.shelf = myBook ? myBook.shelf : 'none';
-                        books[index] = book;
-                    });
+  changeShelf = (book, newShelf) => {
+    BooksAPI.update(book, newShelf).then(() => {
+      book.shelf = newShelf;
+      this.setState(state => ({
+        books: state.books.filter(b => b.id !== book.id).concat([book])
+      }));
+    });
+  };
 
-                    this.setState({
-                        searchBooks: books
-                    });
-                }
+  updateQuery = (query) => {
+    if (query) {
+      BooksAPI.search(query, this.MAX_RESULTS).then((books) => {
+        if (books.length) {
+          books.forEach((book, index) => {
+            let myBook = this.state.books.find((b) => b.id === book.id);
+            book.shelf = myBook
+              ? myBook.shelf
+              : 'none';
+            books[index] = book;
+          });
 
-            });
-            } else {
-            this.setState({
-                searchBooks: []
-            });
+          this.setState({searchBooks: books});
         }
-    };
+
+      });
+    } else {
+      this.setState({searchBooks: []});
+    }
+  };
+
+  /*
+  displayShelf
+  This funciton will configure the Shelf component depending on shelfNum.
+  0 = currentShelf, 1 = wantToRead, 2 = read
+  */
+  displayShelf = (shelfNum) => {
+    return (<Shelf title={this.state.shelves[shelfNum].name} shelf={this.state.shelves[shelfNum].type} books={this.getShelfBooks(this.state.shelves[shelfNum].type)} changeShelf={this.changeShelf}/>)
+  }
 
   render() {
+    const {shelves} = this.state;
     return (
       <div className="app">
-        <Route exact path="/"  render={({history}) => (
+        <Route exact path="/" render={({history}) => (
           <div className="container landing">
-            <Landing />
+            <Landing/>
             <Footer/>
           </div>
         )}/>
+        {/* Created loop to diplay the different Shelf components. */}
         <Route exact path="/main" render={() => (
-          <div className="list-books">
-            <NavBar/>
-            <div className="list-books-content">
-              <div>
-                <Shelf title="Currently Reading" shelf="currentlyReading" books={this.getShelfBooks("currentlyReading")} changeShelf={this.changeShelf}/>
-                <Shelf title="Want To Read" shelf="wantToRead" books={this.getShelfBooks("wantToRead")} changeShelf={this.changeShelf}/>
-                <Shelf title="Read" shelf="read" books={this.getShelfBooks("read")} changeShelf={this.changeShelf}/>
-              </div>
-            </div>
+          <div className="container">
+            <NavBar/> {shelves.map((shelf) => <Shelf key={shelf.id} title={shelf.name} shelf={shelf.type} books={this.getShelfBooks(shelf.type)} changeShelf={this.changeShelf}/>)}
             <Footer/>
           </div>
         )}/>
 
         <Route path="/currentlyReading" render={({history}) => (
           <div className="container">
-            <NavBar/>
-            <Shelf title="Currently Reading" shelf="currentlyReading" books={this.getShelfBooks("currentlyReading")} changeShelf={this.changeShelf}/>
+            <NavBar/> {this.displayShelf(0)}
             <Footer/>
           </div>
         )}/>
         <Route path="/wantToRead" render={({history}) => (
           <div className="container">
-            <NavBar/>
-            <Shelf title="Want To Read" shelf="wantToRead" books={this.getShelfBooks("wantToRead")} changeShelf={this.changeShelf}/>
+            <NavBar/> {this.displayShelf(1)}
             <Footer/>
           </div>
         )}/>
         <Route path="/read" render={({history}) => (
           <div className="container">
-            <NavBar/>
-            <Shelf title="Read" shelf="read" books={this.getShelfBooks("read")} changeShelf={this.changeShelf}/>
+            <NavBar/> {this.displayShelf(2)}
             <Footer/>
           </div>
         )}/>

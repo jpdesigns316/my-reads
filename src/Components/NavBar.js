@@ -9,7 +9,7 @@ class NavBar extends Component {
         <Navbar  fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
-              <Navbar.Link href="/">My Reading List</Navbar.Link>
+              <Navbar.Link href="/main">My Reading List</Navbar.Link>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>

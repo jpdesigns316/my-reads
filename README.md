@@ -1,10 +1,31 @@
 # myReads
-This is a project completed for the React Developer degree at Udacity. This application was intended to learn the basics of creating React applicaions. The base design was to create a Bookshelf cataloging application to keep track of books and placed them into three categories; currently reading, read, and want to read.
+This is a project completed for the React Developer degree at Udacity. This application was intended to learn the basics of creating React applications. The base design was to create a Bookshelf cataloging application to keep track of books and placed them into three categories; currently reading, read, and want to read.
+
+## Screenshots
+
+You can view all the shelves at once or you can used the dropdown to look at one specific shelf.
+
+All Book Shelves
+![Main Page](/images/main02.PNG)
+
+Single  Book Shelf
+![Main Page](/images/main02.PNG)
+
+Search page:
+![Seach Page](/images/serch.PNG)
+
+By clicking on a book you will get more information about it
+![More Detail](/images/modal.PNG)
+
+## Licensing
+
+This repository uses the MIT License. [click here](Liscence.MD) to find out more about it.
 
 ## Needed to run this program:
 A computer (DUH!)
-NodeJs - For Windows or Mac users go to their [download page](https://nodejs.org/en/download) and download the latest version for your operating sytem. For Linux users read this [page](https://nodejs.org/en/download/package-manager/) to find out how to install it depending on your Linux version.
+NodeJs - For Windows or Mac users go to their [download page](https://nodejs.org/en/download) and download the latest version for your operating system. For Linux users read this [page](https://nodejs.org/en/download/package-manager/) to find out how to install it depending on your Linux version.
 npm - Node Package Manager
+
 
 ## Installation
 1. Clone this repositroy:
@@ -58,5 +79,10 @@ $ npm start
  | /serach | Search Page |
 
 
+## Valid Search categories
+
+```
+'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'History', 'History', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Program Javascript', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
+```
 ---
 Credit [react-bootstrap](https://react-bootstrap.github.io/)
