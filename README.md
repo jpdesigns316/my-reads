@@ -12,7 +12,7 @@ Single  Book Shelf
 ![Main Page](/images/main02.PNG)
 
 Search page:
-![Seach Page](/images/serch.PNG)
+![Search Page](/images/search.PNG)
 
 By clicking on a book you will get more information about it
 ![More Detail](/images/modal.PNG)
