@@ -9,7 +9,7 @@ All Book Shelves
 ![Main Page](/images/main02.PNG)
 
 Single  Book Shelf
-![Main Page](/images/shelf.PNG)
+![Single Shelf](/images/Shelf.PNG)
 
 Search page:
 ![Search Page](/images/search.PNG)
